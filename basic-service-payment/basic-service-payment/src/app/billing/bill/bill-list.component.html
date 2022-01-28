@@ -1,0 +1,43 @@
+<app-banner [title]="title" [description]="description"></app-banner>
+<div class="billBody">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <button type="button" (click)="addBill()" class="btn btn-success addButton">Add Bill</button>
+        </div>
+      </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Service</th>
+          <th scope="col">Period</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let bill of bills; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            {{ bill.service }}
+          </td>
+          <td>
+            {{ bill.period }}
+          </td>
+          <td>
+            <button 
+                type="button" 
+                (click) = "onEditClient(bill)"
+                class="btn btn-primary actionButton">
+                Edit
+            </button>
+            <button 
+                type="button" 
+                (click) = "onDeleteBill(bill)"
+                class="btn btn-danger actionButton">
+                Delete
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>

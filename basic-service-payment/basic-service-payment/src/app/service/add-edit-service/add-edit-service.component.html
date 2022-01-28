@@ -1,0 +1,11 @@
+<app-banner [title]="title" [description]="description"></app-banner>
+<div class="addEditBody">
+<form>
+    <div class="form-group">
+      <label for="inputName">Category</label>
+      <input required type="text" name="category" [(ngModel)]="currentService.category" class="form-control" id="inputCategory" placeholder="Service Category">
+    </div>
+    <button type="button" (click)="save()" class="btn btn-primary saveButton">Save</button>
+    <button type="button" (click) = "cancel()" class="btn btn-danger">Cancel</button>
+  </form>
+</div>

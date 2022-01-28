@@ -1,0 +1,46 @@
+<app-banner [title]="title" [description]="description"></app-banner>
+<div class="addEditBody">
+<form >
+    <div class="form-row">
+        <div class="form-group col-lg-6">
+        <label for="inputService">Service</label>
+            <div class="form-group">
+                <select (ngModelChange)="selectChange($event)" name="service" [(ngModel)] = "currentBill.service" class="form-control">
+                <option value="">Select a service</option>
+                <option *ngFor="let service of services" [value]="service">{{service}}</option>              
+                </select>
+            </div>
+        </div>
+        <div class="btn-group col-lg-12">
+            <label for="inputService">Period</label>
+            <br>                
+        </div>   
+        <div class="btn-group col-lg-12">
+            <div class="btn-group saveButton">
+                <select required id="yearPeriod" (ngModelChange)="changeYearPeriod($event)" name="yearPeriod" [(ngModel)] = "currentBill.yearPeriod" class="form-control">
+                <option value="">Select a year</option>
+                <option *ngFor="let year of years" [value]="year">{{year}}</option>              
+                </select>
+            </div>
+            <div class="btn-group ">
+                <select required (ngModelChange)="changeMothPeriod($event)" name="monthPeriod" [(ngModel)] = "currentBill.monthPeriod" class="form-control">
+                <option value="">Select a month</option>
+                <option *ngFor="let month of months" [value]="month">{{month}}</option>              
+                </select>
+            </div>
+        </div>   
+    </div>
+
+    <br>
+    <br>
+
+    <button type="button" (click) = "save()" class="btn btn-primary saveButton">Save</button>
+    <button type="button" (click) = "cancel()" class="btn btn-danger">Cancel</button>
+
+    
+  </form>
+  
+</div>
+
+
+

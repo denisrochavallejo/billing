@@ -1,0 +1,11 @@
+<app-banner [title]="title" [description]="description"></app-banner>
+<div class="addEditBody">
+<form>
+    <div class="form-group">
+      <label for="inputName">Name</label>
+      <input required type="text" name="name" [(ngModel)]="currentClient.name" class="form-control" id="inputName" placeholder="Denis Rocha">
+    </div>
+    <button type="button" (click)="save()" class="btn btn-primary saveButton">Save</button>
+    <button type="button" (click) = "cancel()" class="btn btn-danger">Cancel</button>
+  </form>
+</div>

@@ -1,0 +1,45 @@
+<app-banner [title]="title" [description]="description"></app-banner>
+<div class="addEditBody">
+<form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputClient">Client</label>
+            <select disabled="true" [(ngModel)] = "currentBilling.client" name="client" id="inputClient" class="form-control">
+              <option value="">Select a client</option>
+              <option *ngFor="let client of clients" [value]="client">{{client}}</option>              
+            </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputService">Service</label>
+        <select disabled="true" [(ngModel)] = "currentBilling.service" name="service" id="inputService" class="form-control">
+          <option value="">Select a service</option>
+          <option *ngFor="let service of services" [value]="service">{{service}}</option>              
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="inputService">Period</label>
+        <br>
+    </div>
+    <div class="form-group">
+        <div class="btn-group saveButton period">
+            <select disabled="true" id="yearPeriod" (ngModelChange)="changeYearPeriod($event)" name="yearPeriod" [(ngModel)] = "currentBilling.yearPeriod" class="form-control">
+            <option value="">Select a year</option>
+            <option *ngFor="let year of years" [value]="year">{{year}}</option>              
+            </select>
+        </div>
+        <div class="btn-group period">
+            <select disabled="true" (ngModelChange)="changeMothPeriod($event)" name="monthPeriod" [(ngModel)] = "currentBilling.monthPeriod" class="form-control">
+            <option value="">Select a month</option>
+            <option *ngFor="let month of months" [value]="month">{{month}}</option>              
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputCurrency">Currency</label>
+        <input disabled required type="text" name="currency" class="form-control" id="inputCurrency" value="USD">
+      </div>
+    <button type="button" (click)="payBilling()" class="btn btn-success saveButton">Pay</button>
+    <button type="button" (click) = "cancel()" class="btn btn-danger ">Cancel</button>
+  </form>
+</div>

@@ -1,0 +1,39 @@
+<app-banner [title]="title" [description]="description"></app-banner>
+<div class="clientBody">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <button type="button" (click)="addClient()" class="btn btn-success addButton">Add Client</button>
+    </div>
+  </div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let client of clients; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ client.name }}
+      </td>
+      <td>
+        <button 
+            type="button" 
+            (click) = "editClient(client)"
+            class="btn btn-primary actionButton">
+            Edit
+        </button>
+        <button 
+            type="button" 
+            (click) = "onDeleteClient(client)"
+            class="btn btn-danger actionButton">
+            Delete
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

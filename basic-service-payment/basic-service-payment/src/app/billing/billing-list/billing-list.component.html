@@ -1,0 +1,90 @@
+<app-banner [title]="title" [description]="description"></app-banner>
+<div class="billingBody">
+    <form>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputClient">Client</label>
+            <select (ngModelChange)="searchByClient($event)" name="client" [(ngModel)] = "search.client" id="inputClient" class="form-control">
+              <option value="">Select a client</option>
+              <option *ngFor="let client of clients" [value]="client">{{client}}</option>              
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputService">Service</label>
+            <select (ngModelChange)="searchByService($event)" name="service" [(ngModel)] = "search.service" id="inputService" class="form-control">
+              <option value="">Select a service</option>
+              <option *ngFor="let service of services" [value]="service">{{service}}</option>              
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputService">Status</label>
+            <select (ngModelChange)="searchByStatus($event)" name="status" [(ngModel)] = "search.status" id="inputStatus" class="form-control">
+              <option value="">Select a status</option>
+              <option *ngFor="let status of statuses" [value]="status">{{status}}</option>    
+            </select>
+          </div>         
+        </div>
+      </form>
+      <br>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Client</th>
+        <th scope="col">Service</th>
+        <th scope="col">Period</th>
+        <th scope="col">Status</th>        
+        <th scope="col">Currency</th>        
+        <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let billing of billings; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{ billing?.client }}
+        </td>
+        <td>
+            {{ billing?.service }}
+        </td>
+        <td>
+            {{ billing.period }} 
+        </td>
+        <td>
+            {{ billing.status }}
+        </td>
+        <td>
+          USD
+      </td>
+        <td>
+            <button 
+                [disabled]="billing.status == 'PAID'" 
+                type="button" 
+                (click) = "editBilling(billing)"
+                class="btn btn-success actionButton">
+                Pay
+            </button>
+            <button 
+                type="button" 
+                (click) = "deleteBilling(billing)"
+                class="btn btn-danger actionButton">
+                Delete
+            </button>
+        </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshBillings()">
+      </ngb-pagination>
+    
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshBillings()">
+        <option [ngValue]="5">5 items per page</option>
+        <option [ngValue]="10">10 items per page</option>
+        <option [ngValue]="15">15 items per page</option>
+      </select>
+    </div>
+</div>
+
+
