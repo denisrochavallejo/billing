@@ -1,2 +1,2 @@
 # billing
-This POC was implemented in Angular and .Net Core
+This POC was implemented using Angular in the FrontEnd and .Net Core in the BackEnd for managing payments of Service Bills
